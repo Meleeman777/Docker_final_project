@@ -1,0 +1,6 @@
+**/results/*.sql
+**/docker/*.json
+*.md
+LICENSE
+*.ico
+**/.*/

@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  librespeed:
+    image: speedtest-speed:latest
+    env_file:
+      - speed.env
+    ports:
+      - "80:80"
+
