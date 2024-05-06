@@ -1,6 +1,8 @@
 **/results/*.sql
-**/docker/*.json
 *.md
 LICENSE
 *.ico
 **/.*/
+Dockerifle
+app.compose.yml
+
