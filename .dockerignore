@@ -1,7 +1,6 @@
 **/results/*.sql
 *.md
 LICENSE
-*.ico
 **/.*/
 Dockerifle
 app.compose.yml

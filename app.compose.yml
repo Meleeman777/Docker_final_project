@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_PASSWORD: PASSWORD
       POSTGRES_USER:  DB_NAME
-      POSTGRES_HOSTNAME: DB_HOSTNAME
+      POSTGRES_HOSTNAME: postgres
       POSTGRES_DB: USERNAME
     networks:
       - traefik-public
