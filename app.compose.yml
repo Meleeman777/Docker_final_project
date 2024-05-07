@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - /results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
+      - ./results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
     environment:
       POSTGRES_PASSWORD: PASSWORD
       POSTGRES_USER: USERNAME
@@ -19,7 +19,7 @@ services:
     env_file:
       - speed.env
     ports:
-      - "80:80"
+      - 80:80
     networks:
       - traefik-public
     logging:
@@ -29,10 +29,16 @@ services:
         tag: app
     volumes:
       - $PWD/docker/servers.json:/servers.json
+    deploy:
+     labels:
+       - "traefik.enable=true"
+       - "traefik.http.routers.librespeed.rule=Host(`librespeed.159.253.18.53.nip.io`)"
+       - "traefik.http.routers.librespeed.entrypoints=web"
+       - "traefik.http.services.librespeed.loadbalancer.server.port=80"
   traefik:
     image: traefik:v2.0
     ports:
-      - 8080:8080 
+      - 8080:8080
     command:
       - --api.insecure=true
       - --api.dashboard=true
@@ -41,11 +47,6 @@ services:
       - --providers.docker=true
       - --providers.docker.swarmMode=true
       - --providers.docker.network=traefik-net
-      - --entrypoints.web.address=:80
-      - --entrypoints.web-secured.address=:443
-      - --certificatesresolvers.mytlschallenge.acme.httpChallenge.entrypoint=web
-      - --certificatesresolvers.mytlschallenge.acme.email=you@whatever.com
-      - --certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
@@ -63,3 +64,4 @@ networks:
   traefik-public:
 volumes:
   pgdata:
+
