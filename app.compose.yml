@@ -9,13 +9,15 @@ services:
       - ./results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
     environment:
       POSTGRES_PASSWORD: PASSWORD
-      POSTGRES_USER: USERNAME
+      POSTGRES_USER:  DB_NAME
       POSTGRES_HOSTNAME: DB_HOSTNAME
-      POSTGRES_DB: DB_NAME
+      POSTGRES_DB: USERNAME
     networks:
       - traefik-public
   librespeed:
     build: .
+    depends_on:
+      - postgres
     env_file:
       - speed.env
     ports:
