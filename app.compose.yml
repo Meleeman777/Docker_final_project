@@ -1,11 +1,65 @@
 version: "3.4"
-
+name: rbmdkrfinalapp
 services:
+  mysql:
+    image: mysql:9.6.3
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      POSTGRES_PASSWORD: PASSWORD
+      POSTGRES_USER: USERNAME
+      POSTGRES_HOSTNAME: DB_HOSTNAME
+      POSTGRES_DB: DB_NAME
+    networks:
+      - traefik-public
   librespeed:
     build: .
     env_file:
       - speed.env
     ports:
       - "80:80"
+    networks:
+      - traefik-public
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-async-connect: "true"
+        tag: app
     volumes:
       - $PWD/docker/servers.json:/servers.json
+  traefik:
+    image: traefik:v2.0
+    ports:
+      - 8080:8080 
+    command:
+      - --api.insecure=true
+      - --api.dashboard=true
+      - --api.debug=true
+      - --log.level=DEBUG
+      - --providers.docker=true
+      - --providers.docker.swarmMode=true
+      - --providers.docker.network=traefik-net
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secured.address=:443
+      - --certificatesresolvers.mytlschallenge.acme.httpChallenge.entrypoint=web
+      - --certificatesresolvers.mytlschallenge.acme.email=you@whatever.com
+      - --certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.http.routers.api.rule=Host(`traefik.159.253.18.53.nip.io`)"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-async-connect: "true"
+        tag: traefik
+
+networks:
+  traefik-public:
+volumes:
+  pgdata:

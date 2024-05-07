@@ -52,8 +52,5 @@ if [[ "$TELEMETRY" == "true" && ( "$MODE" == "frontend" || "$MODE" == "standalon
   chown www-data /database/
 fi
 
-
-echo "Done, Starting APACHE"
-
 # This runs apache
 apache2-foreground

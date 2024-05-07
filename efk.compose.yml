@@ -1,0 +1,7 @@
+version: '3.4'
+name: rbmdkrfinalefk
+services:
+
+
+networks:
+  traefik-public:
