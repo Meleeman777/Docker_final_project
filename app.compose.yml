@@ -1,12 +1,12 @@
 version: "3.4"
 name: rbmdkrfinalapp
 services:
-  mysql:
-    image: mysql:9.6.3
+  postgres:
+    image: postgres:9.6.3
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
-    command: --default-authentication-plugin=mysql_native_password
+      - /results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
     environment:
       POSTGRES_PASSWORD: PASSWORD
       POSTGRES_USER: USERNAME
