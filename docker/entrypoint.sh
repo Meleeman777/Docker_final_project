@@ -36,7 +36,7 @@ fi
 if [[ "$TELEMETRY" == "true" && ( "$MODE" == "frontend" || "$MODE" == "standalone" ) ]]; then
   cp -r /speedtest/results /var/www/html/results
 
-  sed -i s/\$db_type=\".*\"/\$db_type=\"postgresql\"\;/g /var/www/html/results/telemetry_settings.php
+  sed -i s/\$db_type=\".*\"/\$db_type=\"sqlite\"\;/g /var/www/html/results/telemetry_settings.php
   sed -i s/\$Sqlite_db_file\ =\ \".*\"/\$Sqlite_db_file=\"\\\/database\\\/db.sql\"/g /var/www/html/results/telemetry_settings.php
   sed -i s/\$stats_password=\".*\"/\$stats_password=\"$PASSWORD\"/g /var/www/html/results/telemetry_settings.php
 
