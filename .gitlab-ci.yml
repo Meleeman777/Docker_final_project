@@ -1,0 +1,7 @@
+image: docker
+services:
+  - docker:dind
+build:
+  script:
+    - git pull https://oauth2:glpat-wGF7mViuLVqxnGPLAYoV@gitlab.rebrainme.com/docker_users_repos/5229/speedtest.git
+    - docker compose -f app.compose.yml up -d --no-deps --force-recreate --build --remove-orphans
