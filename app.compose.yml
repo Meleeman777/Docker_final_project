@@ -4,13 +4,13 @@ services:
   postgres:
     image: postgres:9.6.3
     restart: always
+    hostname: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
     environment:
       POSTGRES_PASSWORD: speedtest
       POSTGRES_USER: speedtest
-      POSTGRES_HOSTNAME: postgres
       POSTGRES_DB: speedtest
     networks:
       - traefik-public

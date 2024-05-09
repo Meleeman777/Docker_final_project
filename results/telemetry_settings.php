@@ -11,7 +11,6 @@ $PostgreSql_password="speedtest";
 $PostgreSql_hostname="postgres";
 $PostgreSql_databasename="speedtest";
 
-
 //IMPORTANT: DO NOT ADD ANYTHING BELOW THIS PHP CLOSING TAG, NOT EVEN EMPTY LINES!
 ?>
 
