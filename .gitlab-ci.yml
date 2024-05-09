@@ -1,7 +1,6 @@
 stages:
-  - test
-test:
-  stage: test
+  - run
+run:
   script:
     - cd /home/rebrain/speedtest
     - git checkout testing
