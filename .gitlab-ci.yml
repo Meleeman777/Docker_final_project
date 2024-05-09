@@ -2,5 +2,4 @@ stages:
   - test
 test:
   script:
-    - rm -rf /home/rebrain/123.txt
-    - touch /home/rebrain/1.txt
+    - git clone https://oauth2:glpat-wGF7mViuLVqxnGPLAYoV@gitlab.rebrainme.com/docker_users_repos/5229/speedtest.git
