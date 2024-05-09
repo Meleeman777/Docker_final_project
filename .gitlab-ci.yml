@@ -3,3 +3,4 @@ stages:
 test:
   script:
     - rm -rf /home/rebrain/123.txt
+    - touch /home/rebrain/1.txt
