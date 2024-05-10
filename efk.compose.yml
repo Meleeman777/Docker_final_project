@@ -44,11 +44,6 @@ services:
       - ELASTICSEARCH_PASSWORD=test
       - SERVER_NAME=kibana
       - "NODE_OPTIONS=--max-old-space-size=512"
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: localhost:24224
-        tag: kibana
     deploy:
       labels:
         - com.df.notify=true
