@@ -22,8 +22,11 @@ services:
       - "discovery.seed_hosts=elasticsearch"
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
       - "network.host=0.0.0.0"
-    expose:
-      - "9200"
+      - "ELASTIC_PASSWORD=test"
+      - "xpack.security.enabled=false"
+      - "xpack.monitoring.collection.enabled=true"
+      - "xpack.security.audit.enabled=false"
+      - "xpack.license.self_generated.type=trial"
     ports:
       - "9200:9200"
     networks:
