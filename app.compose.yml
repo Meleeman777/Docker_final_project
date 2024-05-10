@@ -65,7 +65,7 @@ services:
 
 networks:
   traefik-public:
-    name: traefik-publik
+    name: traefik-public
 
 volumes:
   pgdata:
