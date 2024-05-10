@@ -26,8 +26,6 @@ services:
       - "9200"
     ports:
       - "9200:9200"
-    volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
     networks:
       traefik-public:
   kibana:
