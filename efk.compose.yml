@@ -18,6 +18,7 @@ services:
     image: elasticsearch:8.8.0
     hostname: elasticsearch
     environment:
+      - discovery.type=single-node
       - ELASTIC_PASSWORD=test
       - xpack.security.enabled=false
       - xpack.monitoring.collection.enabled=true
