@@ -18,8 +18,15 @@ services:
     image: elasticsearch:8.8.0
     hostname: elasticsearch
     environment:
-      - "network.host=0.0.0.0"
-      - "discovery.type=single-node"
+      - node.name={{.Node.Hostname}}
+      - discovery.seed_hosts=elasticsearch
+      - ELASTIC_PASSWORD=test
+      - xpack.security.enabled=false
+      - xpack.monitoring.collection.enabled=true
+      - xpack.security.audit.enabled=false
+      - xpack.license.self_generated.type=trial
+      - network.host=0.0.0.0
+      - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     ports:
       - "9200:9200"
@@ -28,6 +35,10 @@ services:
   kibana:
     image: kibana:8.8.0
     environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic/kibana
+      - ELASTICSEARCH_PASSWORD=test
+      - SERVER_NAME=kibana
       - "NODE_OPTIONS=--max-old-space-size=512"
     ports:
       - "5601:5601"
