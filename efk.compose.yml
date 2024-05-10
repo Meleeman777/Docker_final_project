@@ -24,6 +24,7 @@ services:
       - xpack.security.audit.enabled=false
       - xpack.license.self_generated.type=trial
       - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     volumes:
       - esdata:/usr/share/elasticsearch/data
     networks:
