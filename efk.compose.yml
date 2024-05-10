@@ -13,29 +13,30 @@ services:
       - "24224:24224"
       - "24224:24224/udp"
     networks:
-      traefik-public:
+      traefik-public
   elasticsearch:
     image: elasticsearch:8.8.0
     environment:
       - node.name={{.Node.Hostname}}
+      - discovery.seed_hosts=elasticsearch
+      - cluster.initial_master_nodes=docker-master
+      - cluster.name=DevOps
       - ELASTIC_PASSWORD=test
       - xpack.security.enabled=false
       - xpack.monitoring.collection.enabled=true
       - xpack.security.audit.enabled=false
       - xpack.license.self_generated.type=trial
       - network.host=0.0.0.0
-      - discovery.type=single-node
     volumes:
       - esdata:/usr/share/elasticsearch/data
     networks:
-      traefik-public:
+      traefik-public
     deploy:
       labels:
         - com.df.notify=true
         - com.df.distribute=true
         - com.df.servicePath=/
         - com.df.port=9200
-
   kibana:
     image: kibana:8.8.0
     environment:
@@ -52,7 +53,7 @@ services:
     ports:
       - "5601:5601"
     networks:
-      traefik-public:
+      traefik-public
 
 volumes:
   esdata:
