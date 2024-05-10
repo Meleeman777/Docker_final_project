@@ -28,8 +28,6 @@ services:
       - "xpack.monitoring.collection.enabled=true"
       - "xpack.security.audit.enabled=false"
       - "xpack.license.self_generated.type=trial"
-    volumes:
-      - ./esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
@@ -49,8 +47,6 @@ services:
           memory: 512M
     networks:
       traefik-public:
-volumes:
-  esdata:
 
 networks:
   traefik-public:
