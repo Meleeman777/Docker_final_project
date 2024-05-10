@@ -48,8 +48,6 @@ services:
       - --api.debug=true
       - --log.level=DEBUG
       - --providers.docker=true
-      - --providers.docker.swarmMode=true
-      - --providers.docker.network=traefik-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
