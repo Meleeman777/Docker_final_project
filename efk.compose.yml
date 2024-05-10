@@ -16,11 +16,8 @@ services:
       - traefik-public
   elasticsearch:
     image: elasticsearch:8.8.0
+    hostname: elasticsearch
     environment:
-      - node.name={{.Node.Hostname}}
-      - discovery.seed_hosts=elasticsearch
-      - cluster.initial_master_nodes=docker-master
-      - cluster.name=DevOps
       - ELASTIC_PASSWORD=test
       - xpack.security.enabled=false
       - xpack.monitoring.collection.enabled=true
