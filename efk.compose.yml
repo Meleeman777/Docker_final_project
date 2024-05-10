@@ -1,3 +1,4 @@
+#file: noinspection ComposeUnknownKeys
 version: '3.4'
 name: rbmdkrfinalefk
 services:
@@ -15,7 +16,7 @@ services:
     networks:
       traefik-public:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    image: elasticsearch:8.8.0
     hostname: elasticsearch
     environment:
       - "discovery.type=single-node"
@@ -27,12 +28,14 @@ services:
       - "xpack.monitoring.collection.enabled=true"
       - "xpack.security.audit.enabled=false"
       - "xpack.license.self_generated.type=trial"
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
     networks:
       traefik-public:
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.8.0
+    image: kibana:8.8.0
     environment:
       - "ELASTICSEARCH_URL=http://elasticsearch:9200"
       - "ELASTICSEARCH_USERNAME=elastic/kibana"
@@ -44,9 +47,10 @@ services:
       resources:
         limits:
           memory: 512M
-
     networks:
       traefik-public:
+volumes:
+  esdata:
 
 networks:
   traefik-public:

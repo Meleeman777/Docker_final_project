@@ -1,3 +1,4 @@
+#file: noinspection ComposeUnknownKeys
 version: "3.4"
 name: rbmdkrfinalapp
 services:
