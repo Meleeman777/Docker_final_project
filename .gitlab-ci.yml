@@ -5,5 +5,4 @@ test:
     - git clone https://oauth2:${TOKEN}@gitlab.rebrainme.com/docker_users_repos/5229/speedtest.git
     - cd speedtest/
     - git checkout testing
-    - docker compose -f efk.compose.yml  up -d --no-deps  --force-recreate --build
     - docker compose -f app.compose.yml up -d --no-deps  --force-recreate --build

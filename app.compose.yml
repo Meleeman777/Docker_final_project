@@ -2,7 +2,7 @@ version: "3.4"
 name: rbmdkrfinalapp
 services:
   postgres:
-    image: postgres:9.6.3
+    image: postgres:stable
     restart: always
     ports:
       - "5432:5432"
