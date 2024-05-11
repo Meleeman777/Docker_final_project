@@ -28,6 +28,8 @@ services:
       - speed.env
     networks:
       - traefik-public
+    ports:
+      - 80:80
     logging:
       driver: "fluentd"
       options:
@@ -44,7 +46,6 @@ services:
   traefik:
     image: traefik:v2.0
     ports:
-      - 80:80
       - 8080:8080
     command:
       - --api.insecure=true
