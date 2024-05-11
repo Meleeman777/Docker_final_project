@@ -35,15 +35,14 @@ services:
         tag: app
     volumes:
       - $PWD/docker/servers.json:/servers.json
-    deploy:
-      labels:
-        - "traefik.enable=true"
-        - "traefik.backend=web"
-        - "traefik.http.routers.web.rule=Host(`librespeed.159.253.18.53.nip.io`)"
-        - "traefik.http.services.web.loadbalancer.server.port=80"
-        - "traefik.http.services.web.loadbalancer.server.scheme=http"
-        - "traefik.http.routers.web.middlewares: librespeed"
-        - "traefik.http.middlewares.web.headers.customrequestheaders.X-Real-IP=$remote_addr"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=web"
+      - "traefik.http.routers.web.rule=Host(`librespeed.159.253.18.53.nip.io`)"
+      - "traefik.http.services.web.loadbalancer.server.port=80"
+      - "traefik.http.services.web.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.web.middlewares: librespeed"
+      - "traefik.http.middlewares.web.headers.customrequestheaders.X-Real-IP=$remote_addr"
   traefik:
     image: traefik:v2.10
     ports:
