@@ -36,12 +36,12 @@ services:
     volumes:
       - $PWD/docker/servers.json:/servers.json
     deploy:
-     labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.librespeed.rule=Host(`librespeed.159.253.18.53.nip.io`)"
-       - "traefik.http.routers.librespeed.entrypoints=web"
-       - "traefik.http.services.librespeed.loadbalancer.server.port=80"
-       - "traefik.http.services.librespeed.loadbalancer.server.scheme=http"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.librespeed.rule=Host(`librespeed.159.253.18.53.nip.io`)"
+        - "traefik.http.routers.librespeed.entrypoints=web"
+        - "traefik.http.services.librespeed.loadbalancer.server.port=80"
+        - "traefik.http.services.librespeed.loadbalancer.server.scheme=http"
   traefik:
     image: traefik:v2.0
     ports:
