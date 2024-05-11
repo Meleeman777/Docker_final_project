@@ -35,7 +35,7 @@ services:
     networks:
       - traefik-public
     ports:
-      - 80:80
+      - 8000:80
     logging:
       driver: "fluentd"
       options:
@@ -54,6 +54,7 @@ services:
     image: traefik:v2.10
     ports:
       - 8080:8080
+      - 80:80
     command:
       - --api.insecure=true
       - --api.dashboard=true
