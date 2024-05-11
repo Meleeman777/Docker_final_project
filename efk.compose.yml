@@ -17,8 +17,8 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "10m" #max size of log file
-        max-file: "5" #how many files should docker keep
+        max-size: "10m"
+        max-file: "5"
     networks:
       - traefik-public
   elasticsearch:
