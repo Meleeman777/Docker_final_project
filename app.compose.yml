@@ -26,8 +26,6 @@ services:
       - postgres
     env_file:
       - speed.env
-    ports:
-      - 80:80
     networks:
       - traefik-public
     logging:
@@ -46,6 +44,7 @@ services:
   traefik:
     image: traefik:v2.0
     ports:
+      - 80:80
       - 8080:8080
     command:
       - --api.insecure=true
@@ -53,13 +52,12 @@ services:
       - --api.debug=true
       - --log.level=DEBUG
       - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - traefik-public
-    deploy:
-      labels:
-        - "traefik.http.routers.api.rule=Host(`traefik.159.253.18.53.nip.io`)"
     logging:
       driver: "fluentd"
       options:
