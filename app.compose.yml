@@ -2,7 +2,7 @@ version: "3.4"
 name: rbmdkrfinalapp
 services:
   postgres:
-    image: postgres:9.6.3
+    image: postgres:9.6.4
     restart: always
     ports:
       - "5432:5432"
@@ -10,9 +10,9 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./results/telemetry_postgresql.sql:/docker-entrypoint-initdb.d/telemetry_postgresql.sql
     environment:
-      POSTGRES_PASSWORD: speedtest
-      POSTGRES_USER: speedtest
-      POSTGRES_DB: speedtest
+      POSTGRES_PASSWORD: "speedtest"
+      POSTGRES_USER: "speedtest"
+      POSTGRES_DB: "speedtest"
     networks:
       - traefik-public
     logging:
