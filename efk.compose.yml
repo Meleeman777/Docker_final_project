@@ -65,11 +65,9 @@ services:
       - "5601:5601"
     networks:
       - traefik-public
-
 volumes:
   esdata:
     name: esdata
-
 networks:
   traefik-public:
     name: traefik-public
