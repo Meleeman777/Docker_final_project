@@ -5,4 +5,5 @@ test:
     - git clone https://oauth2:${TOKEN}@gitlab.rebrainme.com/docker_users_repos/5229/speedtest.git
     - cd speedtest/
     - git checkout testing
+    - chmod 775 ./up.sh
     - sudo ./up.sh
