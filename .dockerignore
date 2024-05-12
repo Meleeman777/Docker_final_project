@@ -6,3 +6,4 @@ Dockerifle
 app.compose.yml
 efk.compose.yml
 speed.env
+up.sh
