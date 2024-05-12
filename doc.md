@@ -6,6 +6,7 @@ To download LibreSpeed from the docker hub, use this command:
 ```
 docker pull adolfintel/speedtest
 ```
+
 You will now have a new docker image called `adolfintel/speedtest`.
 
 ## Standalone mode
