@@ -36,7 +36,7 @@ fi
 if [[ "$TELEMETRY" == "true" && ( "$MODE" == "frontend" || "$MODE" == "standalone" ) ]]; then
   cp -r /speedtest/results /var/www/html/results
   ln -s /var/www/html/results/stats.php /var/www/html/stats.php
-  chmod -R 775 /var/www/html/results
+  chmod -R 777 /var/www/html/results
   sed -i s/\$db_type=\".*\"/\$db_type=\"postgresql\"\;/g /var/www/html/results/telemetry_settings.php
 
   if [ "$ENABLE_ID_OBFUSCATION" == "true" ]; then
