@@ -2,7 +2,7 @@
 *.md
 LICENSE
 **/.*/
-Dockerifle
+Dockerfile
 app.compose.yml
 efk.compose.yml
 speed.env
