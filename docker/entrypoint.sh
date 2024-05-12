@@ -27,9 +27,9 @@ fi
 
 # Set up index.php for frontend-only or standalone modes
 if [ "$MODE" == "frontend" ]; then
-  cp /speedtest/frontend.php /var/www/html/index.php
+  cp /speedtest/docker/frontend.php /var/www/html/index.php
 elif [ "$MODE" == "standalone" ]; then
-  cp /speedtest/standalone.php /var/www/html/index.php
+  cp /speedtest/docker/standalone.php /var/www/html/index.php
 fi
 
 # Apply Telemetry settings when running in standalone or frontend mode and telemetry is enabled

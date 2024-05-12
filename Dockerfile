@@ -11,5 +11,4 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql pgsql \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
-COPY docker/*.php /speedtest/
 CMD ["bash", "/speedtest/docker/entrypoint.sh"]
