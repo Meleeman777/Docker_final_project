@@ -6,4 +6,4 @@ test:
     - cd speedtest/
     - git checkout testing
     - chmod 775 ./up.sh
-    - sudo ./up.sh
+    - ./up.sh
