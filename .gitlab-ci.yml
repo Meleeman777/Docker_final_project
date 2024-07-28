@@ -1,7 +1,9 @@
-image: docker
-services:
-  - docker:dind
-build:
+stages:
+  - test
+test:
   script:
-    - git pull 
-    - docker compose -f app.compose.yml up -d --no-deps --force-recreate --build --remove-orphans
+    - git clone https://oauth2:${TOKEN}@gitlab.rebrainme.com/docker_users_repos/5229/speedtest.git
+    - cd speedtest/
+    - git checkout php-apache-working
+    - chmod 775 ./up.sh
+    - ./up.sh

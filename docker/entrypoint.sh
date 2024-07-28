@@ -27,18 +27,17 @@ fi
 
 # Set up index.php for frontend-only or standalone modes
 if [ "$MODE" == "frontend" ]; then
-  cp /speedtest/frontend.php /var/www/html/index.php
+  cp /speedtest/docker/frontend.php /var/www/html/index.php
 elif [ "$MODE" == "standalone" ]; then
-  cp /speedtest/standalone.php /var/www/html/index.php
+  cp /speedtest/docker/standalone.php /var/www/html/index.php
 fi
 
 # Apply Telemetry settings when running in standalone or frontend mode and telemetry is enabled
 if [[ "$TELEMETRY" == "true" && ( "$MODE" == "frontend" || "$MODE" == "standalone" ) ]]; then
   cp -r /speedtest/results /var/www/html/results
-
-  sed -i s/\$db_type=\".*\"/\$db_type=\"sqlite\"\;/g /var/www/html/results/telemetry_settings.php
-  sed -i s/\$Sqlite_db_file\ =\ \".*\"/\$Sqlite_db_file=\"\\\/database\\\/db.sql\"/g /var/www/html/results/telemetry_settings.php
-  sed -i s/\$stats_password=\".*\"/\$stats_password=\"$PASSWORD\"/g /var/www/html/results/telemetry_settings.php
+  ln -s /var/www/html/results/stats.php /var/www/html/stats.php
+  chmod -R 777 /var/www/html/results
+  sed -i s/\$db_type=\".*\"/\$db_type=\"postgresql\"\;/g /var/www/html/results/telemetry_settings.php
 
   if [ "$ENABLE_ID_OBFUSCATION" == "true" ]; then
     sed -i s/\$enable_id_obfuscation=.*\;/\$enable_id_obfuscation=true\;/g /var/www/html/results/telemetry_settings.php
@@ -57,3 +56,4 @@ echo "Done, Starting APACHE"
 
 # This runs apache
 apache2-foreground
+
